@@ -1,4 +1,4 @@
-  float t;
+float t;
 float angle =0;
 int NUM_LINES = 380;
 float v1 =0.4;
