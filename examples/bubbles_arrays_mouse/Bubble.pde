@@ -24,6 +24,14 @@ class Bubble
   
   void top()
   {
+    if (y < diameter / 2)
+    {
+      y = diameter / 2;
+    }
+  }
+  
+  void wraparound()
+  {
     if (y < -diameter / 2)
     {
       x = random(width);
