@@ -18,7 +18,7 @@ void setup()
 
 void draw()
 {
-  background(255);
+  background(0);
   translate(0, height / 2);
   for (int i = 0; i < width - 1; i++)
   {
