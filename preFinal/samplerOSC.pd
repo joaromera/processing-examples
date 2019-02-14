@@ -1,0 +1,59 @@
+#N canvas 111 118 593 552 10;
+#X obj 98 115 sampler;
+#X obj 84 46 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 225 41 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 119 69 openpanel;
+#X obj 77 85 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+;
+#X obj 95 162 output~;
+#X obj 37 222 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 10600 1;
+#X obj 28 282 sel 0;
+#X obj 312 46 notein;
+#X obj 192 98 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 5100 1;
+#X floatatom 217 137 5 0 0 0 - - -;
+#X floatatom 382 83 5 0 0 0 - - -;
+#X floatatom 380 109 5 0 0 0 - - -;
+#X floatatom 381 138 5 0 0 0 - - -;
+#X msg 228 174 send /phasor1 \$1;
+#X msg 257 206 send /reiniciar1 \$1;
+#X msg 289 315 send /comienzo1 \$1;
+#X msg 40 353 0;
+#X obj 104 372 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 28 313 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 81 246 connect localhost 9000;
+#X msg 105 271 disconnect;
+#X msg 249 68 0;
+#X obj 232 281 packOSC;
+#X obj 105 328 udpsend;
+#X connect 0 0 5 0;
+#X connect 0 1 5 1;
+#X connect 0 2 6 0;
+#X connect 1 0 3 0;
+#X connect 2 0 0 2;
+#X connect 2 0 22 0;
+#X connect 3 0 0 1;
+#X connect 4 0 0 0;
+#X connect 6 0 7 0;
+#X connect 7 0 19 0;
+#X connect 8 0 11 0;
+#X connect 8 1 12 0;
+#X connect 8 2 13 0;
+#X connect 9 0 0 3;
+#X connect 9 0 10 0;
+#X connect 10 0 14 0;
+#X connect 14 0 23 0;
+#X connect 15 0 23 0;
+#X connect 16 0 23 0;
+#X connect 17 0 16 0;
+#X connect 19 0 17 0;
+#X connect 20 0 24 0;
+#X connect 21 0 24 0;
+#X connect 22 0 15 0;
+#X connect 23 0 24 0;
+#X connect 24 0 18 0;
