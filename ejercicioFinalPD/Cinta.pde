@@ -5,6 +5,7 @@ class Cinta
   int r;
   int g;
   int b;
+  float d; // diametro
   float velocidad;
   float amplitud;
   float cantidad;
@@ -60,9 +61,12 @@ class Cinta
   {
     noStroke();
     // control de color y diametro de los circulos
-    g = (int) map(mouseX, 0, width, 0, 255);
-    b = (int) map(mouseY, 0, width, 0, 255);
-    float d = map(mouseY, 0, width, 1, 50);
+    if (mouseSets)
+    {
+      g = (int) map(mouseX, 0, width, 0, 255);
+      b = (int) map(mouseY, 0, width, 0, 255);
+      d = map(mouseY, 0, width, 1, 50); // diametro
+    }
     
     // dibujar
     for (int x = 0; x < ys.length; x++)
@@ -78,7 +82,6 @@ class Cinta
       if (mousePressed || millis() - timer < 100)
       {
         ellipse(sin(radians(x))*360 + xpos + random(-10,10), ys[x] + ypos + random(-10,10), d, d);
-        //ys[x] *= random(-0.5,0.5); 
       }
       else
       {
@@ -115,6 +118,16 @@ class Cinta
   void distorsionarTimer()
   {
     timer = millis();
+  }
+  
+  void setBlue(int x)
+  {
+    b = (int) map(x, 0, 127, 0, 255);
+  }
+  
+  void setGreen(int x)
+  {
+    g = (int) map(x, 0, 127, 0, 255);
   }
   
   void imprimir()

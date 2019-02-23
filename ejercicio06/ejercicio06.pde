@@ -8,7 +8,7 @@
 // * Año: 2018                                   *
 // ***********************************************
 
-boolean condicion = false;
+boolean condicion = true;
 
 void setup(){
   size(300,300);

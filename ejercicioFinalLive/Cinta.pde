@@ -1,27 +1,28 @@
 class Cinta
 {
-  int xpos;
-  int ypos;
-  int r;
-  int g;
-  int b;
+  int xpos; int ypos;
+  int r; int g; int b;
+  float d;
   float velocidad;
   float amplitud;
   float cantidad;
-  float dx; // para incrementar en el calculoa
-  float[] ys; // valores de amplitud para la cinta
+  float dx;            // para incrementar en el calculo
+  float[] ys;          // valores de amplitud para la cinta
   boolean random;
   int timer;
+  int hastadonde;
   
   Cinta (float pVelocidad, float pAmplitud, float pCantidad, int pXpos, int pYpos, boolean pRandom)
   {
     r = 255;
     g = 0;
     b = 0;
-    ys = new float[width];  
-    velocidad = pVelocidad;  // Start angle at 0
-    amplitud = pAmplitud;  // Height of wave
-    cantidad = pCantidad;  // How many pixels before the wave repeats
+    d = 1;
+    ys = new float[2*width];
+    hastadonde = ys.length;
+    velocidad = pVelocidad;    // angulo
+    amplitud = pAmplitud;      // amplitud de los valores y
+    cantidad = pCantidad;      // pixeles hasta repetir la onda
     xpos = pXpos;
     ypos = pYpos;
     random = pRandom;
@@ -39,7 +40,7 @@ class Cinta
       velocidad += 0.02;
     }
 
-    // Para cada x calcular un y segun la func sin
+    // Para cada x calcular un y segun func sin
     float x = velocidad;
     dx = (TWO_PI / cantidad);
     for (int i = 0; i < ys.length; i++)
@@ -59,13 +60,9 @@ class Cinta
   void dibujar()
   {
     noStroke();
-    // control de color y diametro de los circulos
-    g = (int) map(mouseX, 0, width, 0, 255);
-    b = (int) map(mouseY, 0, width, 0, 255);
-    float d = map(mouseY, 0, width, 1, 50);
     
     // dibujar
-    for (int x = 0; x < ys.length; x++)
+    for (int x = 0; x < hastadonde; x++)
     {
       if (random)
       {
@@ -75,9 +72,9 @@ class Cinta
       {
         fill(r, g, b);
       }
-      if (mousePressed || millis() - timer < 100)
+      if (mousePressed || millis() - timer < 120)
       {
-        ellipse(sin(radians(x))*360 + xpos + random(-10,10), ys[x] + ypos + random(-10,10), d, d);
+        ellipse(sin(radians(x))*360 + xpos + random(-5,5), ys[x] + ypos + random(-5,5), d, d);
       }
       else
       {
@@ -103,6 +100,13 @@ class Cinta
     b = (int) map(i, 8, 13, 0, 255);
   }
   
+  void setColor(int pR, int pG, int pB)
+  {
+    r = pR;
+    g = pG;
+    b = pB;
+  }
+  
   void distorsionar()
   {
     for (int x = 0; x < ys.length; x++)
@@ -116,6 +120,21 @@ class Cinta
     timer = millis();
   }
   
+  void diametro(float x)
+  {
+    d = x;
+  }
+  
+  void setHastaDonde()
+  {
+    hastadonde = (int) random(ys.length);
+  }
+  
+  void changeRandom()
+  {
+    random = !random;
+  }
+
   void imprimir()
   {
     println(xpos);

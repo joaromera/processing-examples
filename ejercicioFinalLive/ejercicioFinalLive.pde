@@ -20,8 +20,9 @@ void setup()
   frameRate(25);
   oscP5 = new OscP5(this,2346);
   myRemoteLocation = new NetAddress("localhost",12000);
-  size(1000, 640);
-  //fullScreen();
+  //size(1000, 640);
+  noCursor();
+  fullScreen();
   mecanica = new Cinta(0.0, 300.0, 360.0, width / 2, height / 2, false);
 }
 
@@ -30,7 +31,7 @@ void draw()
   background(bcolor);
   mecanica.calcular();
   mecanica.dibujar();
-  bcolor /= 2;
+  if (bcolor > 0) bcolor -= 6;
 }
 
 void keyPressed()

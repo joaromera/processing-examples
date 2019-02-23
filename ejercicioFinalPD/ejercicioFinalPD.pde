@@ -14,6 +14,9 @@ OscP5 oscP5;
 NetAddress myRemoteLocation;
 Cinta mecanica;
 float bcolor = 0;
+boolean mouseSets = true;
+boolean metro = false;
+boolean oscONOFF = false;
 
 void setup()
 {
@@ -42,6 +45,24 @@ void keyPressed()
   if (keyCode == LEFT)
   {
     mecanica.cambiarForma(-10);
+  }
+  if (keyCode == 'm' || keyCode == 'M')
+  {
+    mouseSets = !mouseSets; 
+  }
+  if (keyCode == 't' || keyCode == 'T')
+  {
+    OscMessage clic = new OscMessage("/clic");
+    metro = !metro;
+    clic.add(metro); /* add an int to the osc message */
+    oscP5.send(clic, myRemoteLocation);  
+  }
+  if (keyCode == 'o' || keyCode == 'O')
+  {
+    OscMessage oscON = new OscMessage("/oscON");
+    oscONOFF = !oscONOFF;
+    oscON.add(oscONOFF); /* add an int to the osc message */
+    oscP5.send(oscON, myRemoteLocation);  
   }
 }
 
